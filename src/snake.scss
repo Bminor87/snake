@@ -1,0 +1,18 @@
+#SnakeGame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #FF00F2;
+  height: 100vh;
+  #snakeboard {
+    //margin: auto;
+    //text-align: center;
+  }
+
+  #score {
+    font-size: 48px;
+    text-align: center;
+  }
+
+}
