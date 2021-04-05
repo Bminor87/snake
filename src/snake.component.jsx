@@ -18,7 +18,7 @@ class Snake extends React.Component {
         // Setting the speed. The lower, the faster (Make this LET when it's changeable)
         const initial_speed = 100;
         let speed = 0+initial_speed;
-        let speed_increase = 5;
+        let speed_increase = 2;
 
         const initial_snake = [
           {x: 200, y: 200},
@@ -58,7 +58,8 @@ class Snake extends React.Component {
             if (has_game_ended()) {
                 let sad_text = 'You died you loser! ';
                 sad_text += 'Final score: <span id="score">'+score+'</span>';
-                document.getElementById('ScoreContainer').innerHTML = sad_text;   
+                document.getElementById('ScoreContainer').innerHTML = sad_text;
+                document.getElementById('NewGameButton').setAttribute('style', 'display: block;'); 
                 return;
             }
                 
@@ -217,6 +218,7 @@ class Snake extends React.Component {
                 <div id="ScoreContainer">Score: <span id="score">0</span></div>
                 <div id="SpeedContainer">Speed: <span id="speed">0</span></div>
                 <canvas id="snakeboard" width="800" height="800"></canvas>
+                <a id="NewGameButton" href="https://bminor87.github.io/snake/">New Game</a>
             </div> 
         )
 
