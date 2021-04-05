@@ -5,7 +5,7 @@ class Snake extends React.Component {
     
     componentDidMount() {
         const board_border = 'black';
-        const board_background = "rgba(200, 100, 0, 0.5)";
+        const board_background = "rgba(0, 0, 0, 0.5)";
         const snake_col = 'rgba(200, 200, 0, 0.8)';
         const snake_border = 'rgba(255,255,255,0)';
 
@@ -13,7 +13,7 @@ class Snake extends React.Component {
         const framerate = 20;
 
         // How much score goes up per food
-        let score_growth = 5;
+        let score_growth = 10;
 
         // Setting the speed. The lower, the faster (Make this LET when it's changeable)
         const initial_speed = 100;
@@ -55,7 +55,12 @@ class Snake extends React.Component {
         // main function called repeatedly to keep the game running
         const main = () => {
             
-            if (has_game_ended()) return;
+            if (has_game_ended()) {
+                let sad_text = 'You died you loser! ';
+                sad_text += 'Final score: <span id="score">'+score+'</span>';
+                document.getElementById('ScoreContainer').innerHTML = sad_text;   
+                return;
+            }
                 
             changing_direction = false;
             setTimeout(function onTick() {
@@ -87,8 +92,8 @@ class Snake extends React.Component {
         }
     
         const drawFood = () => {
-          snakeboard_ctx.fillStyle = 'lightgreen';
-          snakeboard_ctx.strokestyle = 'darkgreen';
+          snakeboard_ctx.fillStyle = 'tomato';
+          snakeboard_ctx.strokestyle = 'tomato';
           snakeboard_ctx.fillRect(food_x, food_y, framerate, framerate);
           snakeboard_ctx.strokeRect(food_x, food_y, framerate, framerate);
         }
@@ -185,6 +190,8 @@ class Snake extends React.Component {
             score += score_growth;
             // Display score on screen
             document.getElementById('score').innerHTML = score;
+            // Display speed
+            document.getElementById('speed').innerHTML = initial_speed - speed;
             // Generate new food location
             gen_food();
           } else {
@@ -207,7 +214,8 @@ class Snake extends React.Component {
 
         return (
             <div id="SnakeGame">
-                <div id="score">0</div>
+                <div id="ScoreContainer">Score: <span id="score">0</span></div>
+                <div id="SpeedContainer">Speed: <span id="speed">0</span></div>
                 <canvas id="snakeboard" width="800" height="800"></canvas>
             </div> 
         )
