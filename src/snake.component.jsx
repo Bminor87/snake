@@ -49,7 +49,7 @@ class Snake extends React.Component {
         let snakeboard_ctx = snakeboard.getContext("2d");
 
         const initialize_game = () => {
-            window.location.href = '/';
+            window.location.href = '/snake/';
         }
         
         // main function called repeatedly to keep the game running
